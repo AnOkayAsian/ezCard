@@ -14,16 +14,18 @@ import javax.swing.*;
 
 
 public class graphics extends JFrame implements Runnable {
-    static final int XBORDER = 20;
-    static final int YBORDER = 20;
-    static final int YTITLE = 25;
-    static final int WINDOW_WIDTH = 1000;
-    static final int WINDOW_HEIGHT = 700;
+    static final int XBORDER = 0;
+    static final int YBORDER = 0;
+    static final int YTITLE = 0;
+    static final int WINDOW_WIDTH = 800;
+    static final int WINDOW_HEIGHT = 600;
     boolean animateFirstTime = true;
     int xsize = -1;
     int ysize = -1;
     int scale;
     Image image;
+        Image backgroundIMG;
+
     
     
     Graphics2D g;
@@ -110,83 +112,21 @@ public class graphics extends JFrame implements Runnable {
 
 
 
+        
+        
         if (animateFirstTime) {
             gOld.drawImage(image, 0, 0, null);
             return;
         }
 
-       
+                   g.drawImage(backgroundIMG, getX(0), getY(0),getWidth2(),getHeight2(), this);
+                   g.drawString("ezCode", getWidth2(), getHeight2()/3);
 
         gOld.drawImage(image, 0, 0, null);
     }
-    public static void drawHouse (Graphics2D g, double xscale, double yscale, double rot, int x, int y)
-    {
-        g.translate(x,y);
-        g.rotate(rot * Math.PI/180.0);
-        g.scale(xscale,yscale);
+  
 
-        int xvals[]={0,10,10,-10,-10,0};
-        int yvals[]={-15,-10,10,10,-10,-15};
-        g.fillPolygon(xvals,yvals,xvals.length-1);
-
-        g.scale(1.0/xscale,1.0/yscale);
-        g.rotate(-rot*Math.PI/180.0);
-        g.translate(-x,-y);
-    }
-
-     public static void drawSpade(Graphics g, int x, int y)
-    {
-        g.translate(x,y);
-        int xvals[]={-30,-40,-40,-20,-20, 30, 20,-30};
-        int yvals[]={ 20, 20, 40, 40, 30,-20,-30, 20};
-        g.fillPolygon(xvals,yvals,xvals.length-1);
-        g.setColor(Color.BLACK);
-        g.drawPolygon(xvals,yvals,xvals.length-1);
-        g.translate(-x,-y);
-        g.setFont(new Font("Onyx",Font.PLAIN,30));
-        g.drawString("Original",400,450);
-    }
-     public static void drawHead(Graphics g, int x, int y)
-    {
-        g.translate(x,y);
-        int xvals[]={ 30, 40, 50, 50, 20, 10, 20,-30};
-        int yvals[]={ -20,-10,-20,-50,-50,-40,-30,-20};
-        g.fillPolygon(xvals,yvals,xvals.length-1);
-        g.translate(-x,-y);
-    }
-    public static void drawSpadenew(Graphics2D g, double xscale, double yscale, double rot, int x, int y)
-    {
-        g.translate(x,y);
-        g.rotate(rot * Math.PI/180.0);
-        g.scale(xscale,yscale);
-
-        int xvals[]={-30,-40,-40,-20,-20, 30, 20,-30};
-        int yvals[]={ 20, 20, 40, 40, 30,-20,-30, 20};
-        g.fillPolygon(xvals,yvals,xvals.length-1);
-        g.setColor(Color.BLACK);
-        g.drawPolygon(xvals,yvals,xvals.length-1);
-
-        g.scale(1.0/xscale,1.0/yscale);
-        g.rotate(-rot*Math.PI/180.0);
-        g.translate(-x,-y);
-        g.setFont(new Font("Onyx",Font.PLAIN,30));
-        g.drawString("New",220,250);
-    }
-     public static void drawHeadnew(Graphics2D g, double xscale, double yscale, double rot, int x, int y)
-    {
-        g.translate(x,y);
-        g.rotate(rot * Math.PI/180.0);
-        g.scale(xscale,yscale);
-
-        int xvals[]={ 30, 40, 50, 50, 20, 10, 20,-30};
-        int yvals[]={ -20,-10,-20,-50,-50,-40,-30,-20};
-        g.fillPolygon(xvals,yvals,xvals.length-1);
-
-        g.scale(1.0/xscale,1.0/yscale);
-        g.rotate(-rot*Math.PI/180.0);
-        g.translate(-x,-y);
-    }
-
+    
 ////////////////////////////////////////////////////////////////////////////
 // needed for     implement runnable
     public void run() {
@@ -215,6 +155,7 @@ scale=0;
                 xsize = getSize().width;
                 ysize = getSize().height;
             }
+            backgroundIMG = Toolkit.getDefaultToolkit().getImage("./background.PNG");
 
             reset();
 
