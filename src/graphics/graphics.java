@@ -1,7 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+//possible enhancements
+//working settings menu with:
+//                          themes (i can make some tommorow)
+//                          sounds
+//                          what side it starts on
+//                          read file system?
+//reset/go back go cetain screens
+//better current card display
+//icon/name
+//credits/made by
+//i will make images  for stuff and gib later
 
 package graphics;
 
@@ -183,8 +190,7 @@ public class graphics extends JFrame implements Runnable {
                     {
                         currentCard--;
                         sideA=true;
-                        maxCharB=false;
-                        
+                        maxCharB=false;                        
                     }
                     
                 }
@@ -298,37 +304,27 @@ public class graphics extends JFrame implements Runnable {
                     }
                     else 
                         currentCard++;
-//                    
-//                                        for (int zi =0;zi<maxCards;zi++)
-//                                        {
-//                                            if(cardDeck[currentCard].getSideA() == null || cardDeck[currentCard].getSideB() == null && cardDeck[zi].getCorr()==false )
-//                                            {
-//                                                currentCard=0;
-//                                            }
-//                                        }
-//                                        
-                   
-                   
-//                    for(boolean b : cardDeck[zi].getCorr()) 
-                                        
-//                                            if(!b) 
-//                                                return false;
-                                        if(cardDeck[currentCard].getSideA() == null && cardDeck[currentCard].getSideA() == null)
-                                        {
-                                                for(int zi=0;zi<currentCard;zi++)  
-                                                {
-                                                    if(Arrays.asList(cardDeck[zi].getCorr()).contains(false))
-                                                    {
-                                                        
-                                                        currentCard=0;
-                                                        numIncorrect=500;
-                                                        numTimesRepeated++;
-                                                    }
-                                                    else if (Arrays.asList(cardDeck[zi].getCorr()).contains(true))
-                                                        g.drawString("ALL TERMS COMPLETE",20, 300 );
-                                                }
 
-                                        }
+                    if(cardDeck[currentCard].getSideA() == null && cardDeck[currentCard].getSideA() == null)
+                    {
+                            for(int zi=0;zi<currentCard;zi++)  
+                            {
+                                if(Arrays.asList(cardDeck[zi].getCorr()).contains(false))
+                                {
+
+                                    currentCard=0;
+                                    numIncorrect=500;
+                                    numTimesRepeated++;
+                                    //put code here for still  need repeat
+                                }
+                                else if (Arrays.asList(cardDeck[zi].getCorr()).contains(true))
+                                {
+                                    g.drawString("ALL TERMS COMPLETE",20, 300 );
+                                    //put code here for all done
+                                }
+                            }
+
+                    }
 
                    }
                     
